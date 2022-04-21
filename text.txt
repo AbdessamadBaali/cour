@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<?php
+$produitsF = [
+    ["tf123", "clavier femme", 500],
+    ["tg321", "souri femme", 1500],
+    ["er654", "ecron femme", 1500],
+];
+$produitsH = [
+    ["tf123", "clavier ", 300],
+    ["tg321", "souri ", 2000],
+    ["er654", "ecron", 30000],
+];
+
+$generR = $_GET['g']
+
+
+?>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>produits</title>
+</head>
+<body>
+
+<h1>la liste des produits</h1>
+<?php
+
+    echo "<table border='1'>";
+
+        if ($generR == 'femme') {
+
+            for ($i = 0; $i < count($produitsF); $i++) {
+                echo "<tr>";
+                    for ($j = 0; $j < count($produitsF[$i]); $j++) {
+                        echo "<td>";
+                            echo $produitsF[$i][$j];
+                        echo "</td>";
+                    }
+                echo "</tr>";
+            }  
+            
+        } else {
+            for ($i = 0; $i < count($produitsH); $i++) {
+                echo "<tr>";
+                    for ($j = 0; $j < count($produitsH[$i]); $j++) {
+                        echo "<td>";
+                            echo $produitsH[$i][$j];
+                        echo "</td>";
+                    }
+                echo "</tr>";
+            }    
+        }
+ 
+
+    echo "</table>";
+
+?>
+
+    
+</body>
+</html>
+
+
+
+
+
+
+<!DOCTYPE html>
+<?php
+
+$users = [
+    ["baali@gmail.com", "123456", "homme"],
+    ["youssef@gmail.com", "654321", "homme"],
+    ["azouli@gmail.com", "123123", "homme"],
+    ["agoulal@gmail.com", "321321", "femme"],
+];
+
+
+if (isset($_POST['bconect'])) {
+    $ok = false;
+    $userName = $_POST['tuser'];
+    $pw = $_POST['tpass'];
+    $sexe = $_POST['genre'];
+
+    for ($i = 0; $i < count($users); $i++) {
+        if ($users[$i][0] == $userName and $users[$i][1] == $pw and $users[$i][2] ==  $sexe ){
+            header("location:produits.php?g=$sexe");
+            $ok = true;
+        } 
+    }
+
+    if ($ok == false){
+        ?>
+            <script>
+                alert("login ou le mot de passe incorrect!!!")
+            </script>
+        <?php
+    }
+
+}
+
+?>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login page</title>
+</head>
+<body>
+
+    <h1>login system</h1>
+
+    <form action="index.php" method="post">
+        <table>
+
+            <tr>
+                <td>uesr name :</td>
+                <td><input type="text" name="tuser"></td>
+            </tr>
+
+            <tr>
+                <td>password :</td>
+                <td><input type="password" name="tpass"></td>
+            </tr>
+
+            <tr>
+                <td>sexe :</td>
+                <td>
+                    <select name="genre">
+                        <option value="homme">homme</option>
+                        <option value="femme">femme</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input type="submit" value="se conecter" name="bconect"></td>
+            </tr>
+
+
+        </table>
+    </form>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
